@@ -1,0 +1,54 @@
+.ant-drawer {
+  .ant-drawer-content-wrapper {
+    .ant-drawer-content {
+      .ant-drawer-wrapper-body {
+        .ant-drawer-close {
+          color: $secondary-color;
+        }
+
+        .ant-drawer-body {
+          padding-top: 176px;
+          padding-left: 0px;
+          padding-right: 0px;
+
+          .hero-user {
+            background: url('./images/bg-hero.jpg');
+            background-size: cover;
+            color: $secondary-color;
+            height: 176px;
+            left: 0;
+            padding: 24px;
+            position: absolute;
+            top: 0;
+            width: 100%;
+
+            .ant-avatar {
+              display: block;
+            }
+          }
+
+          .ant-menu {
+            .ant-menu-item {
+              &-selected {
+                background-color: transparent;
+                color: $primary-color;
+
+                &::after {
+                  border-color: $primary-color;
+                }
+              }
+
+              &-active, &:hover {
+                color: $secondary-color;
+              }
+
+              &-active, &:active {
+                background-color: $primary-color;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
