@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import Actions from '../Actions/Actions';
+import Cookies from 'universal-cookie';
 import logo from '../images/logo.png';
 class Header extends Component {
   constructor(props) {
     super(props);
+    const cookies = new Cookies();
     this.state = {
       location: props.match.params.handle,
-      visible: false
+      visible: false,
+      user: cookies.get('user')
     }
     this.showDrawer = this.showDrawer.bind(this);
     this.onClose = this.onClose.bind(this);
@@ -14,6 +17,11 @@ class Header extends Component {
 
   componentWillReceiveProps(newProps) {
     console.log(newProps);
+    const cookies = new Cookies();
+    this.setState({
+      location: newProps.match.params.handle,
+      user: cookies.get('user')
+    });
   }
 
   showDrawer = () => {
@@ -28,19 +36,30 @@ class Header extends Component {
     })
   }
   render() {
+    const { location, user } = this.state;
+
     return (
         <div className="header">
-          <div className="menu">
+          {location === 'recetas' && 
+            <div className="menu">
             <div className="menu-burger" onClick={this.showDrawer}>
               <div className="bar top"></div>
               <div className="bar center"></div>
               <div className="bar bottom"></div>
             </div>
           </div>
+          }
           <div className="logo-header">
             <img src={logo} alt="Logo Ben & Frank" />
           </div>
-          <Actions onClose={this.onClose} visible={this.state.visible} />
+          {user !== undefined && 
+            <Actions
+              location={this.state.location}
+              onClose={this.onClose}
+              visible={this.state.visible}
+              user={this.state.user}
+            />
+          }
         </div>
     );
   }

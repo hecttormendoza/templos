@@ -1,0 +1,12 @@
+.login {
+  .ant-row-flex {
+    .ant-col-4 {
+      .button-login {
+        background: $primary-color;
+        color: $secondary-color;
+        cursor: pointer;
+        width: 200px;
+      }
+    }
+  }
+}
